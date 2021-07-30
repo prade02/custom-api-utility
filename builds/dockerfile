@@ -1,0 +1,11 @@
+FROM ubuntu
+
+ARG DEBIAN_FRONTEND=noninteractiv
+
+RUN apt-get update
+RUN apt install wget -y
+RUN apt install unzip -y
+RUN apt install zip -y
+RUN apt install awscli -y
+
+RUN echo 'installed required apps'

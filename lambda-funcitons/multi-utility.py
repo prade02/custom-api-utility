@@ -22,7 +22,7 @@ def respond(message, error=False):
 def handler(event, context):
     print(event)
     # set a dummy result - this will be the response if action in request does not match with lambda
-    result = 'dummy response'
+    result = 'test response'
     action = 'default'
     # try to get action from body - this should be set by the client body:{'action':'some-action'}. if not action is set then return error message
     raw_body = json.loads(event['body'])

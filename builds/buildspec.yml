@@ -1,0 +1,65 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+  #secrets-manager:
+     # key: secret-id:json-key:version-stage:version-id
+     # key: secret-id:json-key:version-stage:version-id
+  #exported-variables:
+     # - variable
+     # - variable
+  #git-credential-helper: yes
+#batch:
+  #fast-fail: true
+  #build-list:
+  #build-matrix:
+  #build-graph:
+phases:
+  install:
+    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
+    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
+    #runtime-versions:
+      # name: version
+      # name: version
+    commands:
+      # - apt-get update
+      # - apt install wget
+      # - apt install unzip
+      # - apt install zip
+      # - apt install awscli
+  pre_build:
+    commands:
+      - wget https://github.com/prade02/custom-api-utility/archive/refs/heads/dev.zip
+      - unzip dev.zip 
+      - cp custom-api-utility-dev/lambda-funcitons/multi-utility.py .
+      - zip upload.zip multi-utility.py
+  build:
+    commands:
+      - aws lambda update-function-code --function-name multi-utility --zip fileb://upload.zip
+  #post_build:
+    #commands:
+      # - command
+      # - command
+#reports:
+  #report-name-or-arn:
+    #files:
+      # - location
+      # - location
+    #base-directory: location
+    #discard-paths: yes
+    #file-format: JunitXml | CucumberJson
+# artifacts:
+#   files:
+#     - '**/*'
+#   base-directory: build
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - paths
