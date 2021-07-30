@@ -23,6 +23,11 @@ def respond(message, error=False):
     response_code = 200 if not error else 503
     return {
         'statusCode': response_code,
+        'headers': {
+            'Access-Control-Allow-Headers' : 'Content-Type',
+            'Access-Control-Allow-Origin': '*', 
+            'Access-Control-Allow-Methods': 'GET'
+        },
         'body': json.dumps(message)
     }
         
